@@ -1,4 +1,4 @@
-package was.apache.coyote;
+package was.apache.tomcat.coyote;
 
 import java.net.Socket;
 
