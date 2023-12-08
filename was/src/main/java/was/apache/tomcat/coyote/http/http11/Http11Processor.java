@@ -31,7 +31,7 @@ public class Http11Processor implements Runnable, Processor {
                 final InputStream inputStream = conn.getInputStream();
                 final OutputStream outputStream = conn.getOutputStream();
         ) {
-            Request request = requestGenerator.generate(new InputStreamReader(inputStream));
+            final Request request = requestGenerator.generate(new InputStreamReader(inputStream));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

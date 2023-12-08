@@ -19,7 +19,10 @@ public class Http11RequestGenerator implements RequestGenerator {
     @Override
     public Request generate(final InputStreamReader inputStreamReader) {
         final BufferedReader br = new BufferedReader(inputStreamReader);
-        return new Request(getRequestLine(br), getHeaders(br));
+        final RequestLine requestLine = getRequestLine(br);
+        final Headers headers = getHeaders(br);
+        final Body body = getBody(br, headers);
+        return new Request(requestLine, headers, body);
     }
 
     private RequestLine getRequestLine(final BufferedReader br) {
@@ -51,4 +54,19 @@ public class Http11RequestGenerator implements RequestGenerator {
         return new Headers(requestHeaders);
     }
 
+    private static Body getBody(final BufferedReader bufferedReader, final Headers headers) {
+        final String contentLengths = headers.getValues().get("Content-Length");
+        if (contentLengths == null) {
+            return new Body(null);
+        }
+        try {
+            int contentLength = Integer.parseInt(contentLengths);
+            char[] buffer = new char[contentLength];
+            bufferedReader.read(buffer, 0, contentLength);
+            final String bodies = new String(buffer);
+            return Body.from(bodies);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
