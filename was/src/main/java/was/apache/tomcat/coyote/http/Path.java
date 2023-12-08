@@ -1,6 +1,4 @@
-package was.apache.tomcat.coyote;
-
-import java.util.Arrays;
+package was.apache.tomcat.coyote.http;
 
 public class Path {
     private static final String PATH_SEPARATOR = "\\?";

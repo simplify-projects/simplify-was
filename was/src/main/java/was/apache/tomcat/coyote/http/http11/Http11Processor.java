@@ -1,8 +1,8 @@
-package was.apache.tomcat.coyote.http11;
+package was.apache.tomcat.coyote.http.http11;
 
-import was.apache.tomcat.coyote.HttpRequest;
-import was.apache.tomcat.coyote.HttpRequestGenerator;
-import was.apache.tomcat.coyote.Processor;
+import was.apache.tomcat.coyote.http.Request;
+import was.apache.tomcat.coyote.http.RequestGenerator;
+import was.apache.tomcat.coyote.http.Processor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +13,7 @@ import java.net.Socket;
 public class Http11Processor implements Runnable, Processor {
 
     private final Socket conn;
-    private final HttpRequestGenerator requestGenerator;
+    private final RequestGenerator requestGenerator;
 
     public Http11Processor(Socket conn) {
         this.conn = conn;
@@ -31,7 +31,7 @@ public class Http11Processor implements Runnable, Processor {
                 final InputStream inputStream = conn.getInputStream();
                 final OutputStream outputStream = conn.getOutputStream();
         ) {
-            HttpRequest httpRequest = requestGenerator.generate(new InputStreamReader(inputStream));
+            Request request = requestGenerator.generate(new InputStreamReader(inputStream));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

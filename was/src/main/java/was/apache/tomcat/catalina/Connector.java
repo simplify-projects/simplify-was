@@ -2,7 +2,7 @@ package was.apache.tomcat.catalina;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import was.apache.tomcat.coyote.http11.Http11Processor;
+import was.apache.tomcat.coyote.http.http11.Http11Processor;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

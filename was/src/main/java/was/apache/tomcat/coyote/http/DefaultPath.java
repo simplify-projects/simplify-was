@@ -1,4 +1,4 @@
-package was.apache.tomcat.coyote;
+package was.apache.tomcat.coyote.http;
 
 /* VO */
 public class DefaultPath {

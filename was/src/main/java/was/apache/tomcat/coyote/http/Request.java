@@ -1,13 +1,13 @@
-package was.apache.tomcat.coyote;
+package was.apache.tomcat.coyote.http;
 
-public class HttpRequest {
+public class Request {
 
     private final Method method;
     private final Path path;
     private final Protocol protocol;
     private final Headers headers;
 
-    public HttpRequest(Method method, Path path, Protocol protocol, Headers headers) {
+    public Request(Method method, Path path, Protocol protocol, Headers headers) {
         this.method = method;
         this.path = path;
         this.protocol = protocol;

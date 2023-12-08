@@ -1,4 +1,4 @@
-package was.apache.tomcat.coyote;
+package was.apache.tomcat.coyote.http;
 
 import java.util.List;
 import java.util.Map;

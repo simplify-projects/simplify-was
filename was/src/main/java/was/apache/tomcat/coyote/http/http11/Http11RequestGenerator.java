@@ -1,6 +1,6 @@
-package was.apache.tomcat.coyote.http11;
+package was.apache.tomcat.coyote.http.http11;
 
-import was.apache.tomcat.coyote.*;
+import was.apache.tomcat.coyote.http.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Http11RequestGenerator implements HttpRequestGenerator {
+public class Http11RequestGenerator implements RequestGenerator {
 
     private static final String SEPARATOR = " ";
     private static final String HEADER_SEPARATOR = ": ";
@@ -17,7 +17,7 @@ public class Http11RequestGenerator implements HttpRequestGenerator {
     }
 
     @Override
-    public HttpRequest generate(final InputStreamReader inputStreamReader) {
+    public Request generate(final InputStreamReader inputStreamReader) {
         final BufferedReader br = new BufferedReader(inputStreamReader);
         try {
             final String requestLine = br.readLine();
@@ -27,7 +27,7 @@ public class Http11RequestGenerator implements HttpRequestGenerator {
             final String path = requestLines[1];
             final String protocol = requestLines[2];
 
-            return new HttpRequest(Method.from(method), Path.from(path), Protocol.from(protocol), getHeaders(br));
+            return new Request(Method.from(method), Path.from(path), Protocol.from(protocol), getHeaders(br));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
